@@ -50,6 +50,7 @@ public class ProductsController : Controller
     [HttpGet]
     public IActionResult Index()
     {
+        _logger.LogInformation($"Get all products");
         List<Product> products = new List<Product>();
         using (var connection = _dbHelper.GetConnection())
         {
@@ -81,6 +82,7 @@ public class ProductsController : Controller
     [HttpGet]
     public IActionResult Delete(int id)
     {
+        _logger.LogInformation($"Delete product with id: {id}");
         using (var connection = _dbHelper.GetConnection())
         {
             connection.Open();
@@ -97,6 +99,6 @@ public class ProductsController : Controller
     int GeneratedCode()
     {
         Random random = new Random();
-        return random.Next(1000, 9999);
+        return random.Next(500, 9999);
     }
 }
