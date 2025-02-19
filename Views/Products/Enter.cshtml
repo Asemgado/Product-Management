@@ -4,28 +4,35 @@
     <h2>Add New Product</h2>
 
     <form asp-action="Enter" method="post">
-
         <div class="form-group mb-3">
             <label asp-for="product_name">Product Name</label>
-            <input asp-for="product_name" class="form-control" required />
+            <input asp-for="product_name" class="form-control" required minlength="3" maxlength="100" />
+            <span asp-validation-for="product_name" class="text-danger"></span>
         </div>
 
         <div class="form-group mb-3">
             <label asp-for="product_wight">Product Weight</label>
-            <input asp-for="product_wight" class="form-control" type="number" step="0.01" required />
+            <input asp-for="product_wight" class="form-control" type="number" step="0.01" min="0.01" required />
+            <span asp-validation-for="product_wight" class="text-danger"></span>
         </div>
 
         <div class="form-group mb-3">
             <label asp-for="product_price">Product Price</label>
-            <input asp-for="product_price" class="form-control" type="number" step="0.01" required />
+            <input asp-for="product_price" class="form-control" type="number" step="0.01" min="0.01" required />
+            <span asp-validation-for="product_price" class="text-danger"></span>
         </div>
 
         <div class="form-group mb-3">
             <label asp-for="product_quantity">Product Quantity</label>
-            <input asp-for="product_quantity" class="form-control" type="number" required />
+            <input asp-for="product_quantity" class="form-control" type="number" min="0" required />
+            <span asp-validation-for="product_quantity" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-primary">Save Product</button>
         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
     </form>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

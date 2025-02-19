@@ -99,6 +99,6 @@ public class ProductsController : Controller
     int GeneratedCode()
     {
         Random random = new Random();
-        return random.Next(500, 9999);
+        return random.Next(1000, 9999);
     }
 }

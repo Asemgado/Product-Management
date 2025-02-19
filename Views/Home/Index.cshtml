@@ -3,6 +3,12 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Product Management System</h1>
+
+    <div class="mt-4 mb-4">
+        <a asp-controller="Products" asp-action="Enter" class="btn btn-primary mx-2">Add Product</a>
+        <a asp-controller="Products" asp-action="Index" class="btn btn-info mx-2">View Products</a>
+        <a asp-controller="Transactions" asp-action="Transaction" class="btn btn-success mx-2">New Transaction</a>
+        <a asp-controller="Transactions" asp-action="History" class="btn btn-secondary mx-2">Transaction History</a>
+    </div>
 </div>

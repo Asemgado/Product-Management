@@ -3,16 +3,19 @@
 <div class="container">
     <h2 class="mb-4">Product Transaction</h2>
 
-    <form asp-action="Operate" method="post">
+    <form asp-action="Transaction" method="post">
         <div class="form-group mb-3">
             <label asp-for="product_id">Product</label>
-            <select asp-for="product_id" class="form-control" asp-items="ViewBag.Products"></select>
+            <select asp-for="product_id" class="form-control" asp-items="ViewBag.Products" required>
+                <option value="">Select a product</option>
+            </select>
             <span asp-validation-for="product_id" class="text-danger"></span>
         </div>
 
         <div class="form-group mb-3">
             <label asp-for="transaction_type">Transaction Type</label>
-            <select asp-for="transaction_type" class="form-control">
+            <select asp-for="transaction_type" class="form-control" required>
+                <option value="">Select transaction type</option>
                 <option value="BUY">Buy</option>
                 <option value="SELL">Sell</option>
             </select>
@@ -21,16 +24,22 @@
 
         <div class="form-group mb-3">
             <label asp-for="transaction_amount">Amount</label>
-            <input asp-for="transaction_amount" class="form-control" type="number" min="1" />
+            <input asp-for="transaction_amount" class="form-control" type="number" min="1" step="1" required />
             <span asp-validation-for="transaction_amount" class="text-danger"></span>
         </div>
 
         <div class="form-group mb-3">
             <label asp-for="transaction_date">Transaction Date</label>
-            <input asp-for="transaction_date" class="form-control" type="datetime-local" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+            <input asp-for="transaction_date" class="form-control" type="datetime-local" 
+                   value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" required />
             <span asp-validation-for="transaction_date" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit Transaction</button>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back to Home</a>
     </form>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
