@@ -1,0 +1,31 @@
+@model Product
+
+<div class="container mt-4">
+    <h2>Add New Product</h2>
+
+    <form asp-action="Enter" method="post">
+
+        <div class="form-group mb-3">
+            <label asp-for="product_name">Product Name</label>
+            <input asp-for="product_name" class="form-control" required />
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="product_wight">Product Weight</label>
+            <input asp-for="product_wight" class="form-control" type="number" step="0.01" required />
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="product_price">Product Price</label>
+            <input asp-for="product_price" class="form-control" type="number" step="0.01" required />
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="product_quantity">Product Quantity</label>
+            <input asp-for="product_quantity" class="form-control" type="number" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Product</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>
