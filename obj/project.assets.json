@@ -4005,25 +4005,24 @@
     ]
   },
   "packageFolders": {
-    "/home/asemgado/.nuget/packages/": {}
+    "C:\\Users\\Asem\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/asemgado/Documents/Github/Product-Management/Product-Management.csproj",
+      "projectUniqueName": "C:\\Users\\Asem\\Documents\\GitHub\\Product-Management\\Product-Management.csproj",
       "projectName": "Product-Management",
-      "projectPath": "/home/asemgado/Documents/Github/Product-Management/Product-Management.csproj",
-      "packagesPath": "/home/asemgado/.nuget/packages/",
-      "outputPath": "/home/asemgado/Documents/Github/Product-Management/obj/",
+      "projectPath": "C:\\Users\\Asem\\Documents\\GitHub\\Product-Management\\Product-Management.csproj",
+      "packagesPath": "C:\\Users\\Asem\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Asem\\Documents\\GitHub\\Product-Management\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/asemgado/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Asem\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "/usr/lib/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4042,7 +4041,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net9.0": {
@@ -4082,7 +4081,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
