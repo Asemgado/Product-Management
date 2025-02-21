@@ -34,6 +34,6 @@
         </tbody>
     </table>
     <div class="mt-3">
-        <a href="@Url.Action("Index", "Home")" class="btn btn-primary me-2">Home</a>
-        <a href="@Url.Action("Transaction", "Transactions")" class="btn btn-secondary">New Transaction</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to Home</a>
+        <a asp-asp-controller="Transactions" asp-action="Transaction" class="btn btn-primary">New Transactions</a>
 </div>
