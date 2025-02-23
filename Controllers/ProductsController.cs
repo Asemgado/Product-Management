@@ -96,9 +96,11 @@ public class ProductsController : Controller
         return RedirectToAction("Index");
     }
 
-    int GeneratedCode()
+
+    private static readonly Random _random = new Random();
+    
+    private int GeneratedCode()
     {
-        Random random = new Random();
-        return random.Next(1000, 9999);
+        return _random.Next(1000, 9999);
     }
 }
