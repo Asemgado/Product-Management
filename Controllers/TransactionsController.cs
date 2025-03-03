@@ -15,6 +15,7 @@ public class TransactionsController : Controller
         _dbHelper = dbHelper;
     }
 
+    [HttpGet]
     public IActionResult Transaction()
     {
         _logger.LogInformation("Transaction page visited");
@@ -72,27 +73,23 @@ public class TransactionsController : Controller
                     }
                 }
             }
-        }
-
-        _logger.LogInformation($"Transaction: {transaction.transaction_type} {transaction.transaction_amount} {transaction.transaction_date}");
-        
-        using (var connection = _dbHelper.GetConnection())
-        {
-            connection.Open();
-            string updateQuery = "";
             
+            _logger.LogInformation($"Transaction: {transaction.transaction_type} {transaction.transaction_amount} {transaction.transaction_date}");
+            
+            var product = products.Find(p => p.product_id == transaction.product_id);
+            if (product == null)
+            {
+                return RedirectToAction("Error", new {message = "Product not found"});
+            }
+
+            string updateQuery = "";
             if (transaction.transaction_type == "SELL")
             {
-                var product = products.Find(p => p.product_id == transaction.product_id);
-                if (product == null)
-                {
-                    return RedirectToAction("Error", new {message = "You Cant Sell a Product that does not exist"});
-                }
                 if (product.product_quantity < transaction.transaction_amount)
                 {
                     return RedirectToAction("Error", new {message = "There is not enough product in stock"});
                 }
-                else updateQuery = "UPDATE Products SET product_quantity = product_quantity - @Amount WHERE product_id = @ProductId";
+                updateQuery = "UPDATE Products SET product_quantity = product_quantity - @Amount WHERE product_id = @ProductId";
             }            
             else if (transaction.transaction_type == "BUY")
             {
@@ -105,33 +102,24 @@ public class TransactionsController : Controller
                 command.Parameters.AddWithValue("@Amount", transaction.transaction_amount);
                 command.ExecuteNonQuery();
             }
-        }
-        using (var connection = _dbHelper.GetConnection())
-        {
-            var product = products.Find(p => p.product_id == transaction.product_id);
-            if (product == null)
-            {
-                return RedirectToAction("Error", new {message = "Product not found"});
-            }
-            decimal product_price = product.product_price;
-            connection.Open();
-            string query = @"INSERT INTO Transactions 
+
+            string insertQuery = @"INSERT INTO Transactions 
                             (product_id, transaction_amount, transaction_date, transaction_type, transaction_price)
                             VALUES (@ProductId, @Amount, @Date, @Type, @Price)";
             
-            using (var command = new SqlCommand(query, connection))
+            using (var command = new SqlCommand(insertQuery, connection))
             {
                 command.Parameters.AddWithValue("@ProductId", transaction.product_id);
                 command.Parameters.AddWithValue("@Amount", transaction.transaction_amount);
                 command.Parameters.AddWithValue("@Date", transaction.transaction_date);
                 command.Parameters.AddWithValue("@Type", transaction.transaction_type);
-                command.Parameters.AddWithValue("@Price", product_price * transaction.transaction_amount);
+                command.Parameters.AddWithValue("@Price", product.product_price * transaction.transaction_amount);
                 command.ExecuteNonQuery();
             }
+            connection.Close();
         }
-        
         return RedirectToAction("History");
-    }
+    }    
     public IActionResult Error(string message)
     {
         ViewBag.Message = message;

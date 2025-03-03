@@ -43,6 +43,7 @@ public class ProductsController : Controller
                 command.Parameters.AddWithValue("@product_quantity", product.product_quantity);
                 command.ExecuteNonQuery();
             }
+            connection.Close();
         }
         return RedirectToAction("Index");
     }
@@ -75,6 +76,7 @@ public class ProductsController : Controller
                     }
                 }
             }
+            connection.Close();
         }
         return View(products);
     }
@@ -92,6 +94,7 @@ public class ProductsController : Controller
                 command.Parameters.AddWithValue("@product_id", id);
                 command.ExecuteNonQuery();
             }
+            connection.Close();
         }
         return RedirectToAction("Index");
     }
